@@ -11,7 +11,7 @@ public class PlayerProjectileScript : MonoBehaviour {
     public float hiddenTimer;
     public float secondTimer;
 
-    public float bulletRange = 10f;
+    public float bulletRange = 20f;
 
     // Use this for initialization
     void Start () {
