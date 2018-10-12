@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectileScript : MonoBehaviour {
+public class PlayerProjectileScript2 : MonoBehaviour
+{
 
     public float projectileSpeed = .25f;
     public float hiddenTimer;
     public float secondTimer;
     //public PlayerScript aScript;
     //public GameObject aGameObject;
-    public float bulletRange = 30f;
+    public float bulletRange=30;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         //aScript = aGameObject.GetComponent<PlayerScript>();
         Vector3 move = new Vector3(1.75f, 0.0f, 0.0f);
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         hiddenTimer++;
-        secondTimer = (int) (hiddenTimer / 20);
+        secondTimer = (int)(hiddenTimer / 20);
         if (hiddenTimer > bulletRange)
         {
             Destroy(gameObject);
@@ -30,10 +33,10 @@ public class PlayerProjectileScript : MonoBehaviour {
 
         Vector3 move = new Vector3(1.75f, 0.0f, 0.0f);
 
-        transform.position = transform.position + move * projectileSpeed;
+        transform.position = transform.position - move * projectileSpeed;
 
 
-        }
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("EnemyTrigger"))
@@ -42,4 +45,3 @@ public class PlayerProjectileScript : MonoBehaviour {
         }
     }
 }
-

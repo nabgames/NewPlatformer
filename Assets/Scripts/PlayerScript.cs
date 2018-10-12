@@ -8,14 +8,14 @@ public class PlayerScript : MonoBehaviour {
 
     public float playerHealth;
     public float jumpSpeed;
+    public Transform GetTransform;
 
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     private bool onGround;
-
     public GameObject Projectile;
+    public GameObject ProjectileLeft;
     public float bulletCoolDown = 0f;
-    public float bulletMaxCoolDown;
     public bool bulletOnCoolDown = false;
 
     public float hiddenTimer;
@@ -24,13 +24,12 @@ public class PlayerScript : MonoBehaviour {
     public float playerX;
     public float playerY;
 
+    public bool rightFace;
     // Use this for initialization
     void Start () {
-
         rb = GetComponent<Rigidbody2D>();
-        bulletMaxCoolDown = 25f;
-       
-
+        rightFace = true;
+  
     }
 	
 	// Update is called once per frame
@@ -51,8 +50,6 @@ public class PlayerScript : MonoBehaviour {
         {
             bulletCoolDown--;
         }
-
-
         float below_distance = 1.2f;  // radius of player plus a little         Vector3 down = new Vector3(transform.position.x, transform.position.y - below_distance, 0.0f);
         onGround = Physics2D.OverlapCircle(down, groundCheckRadius, whatIsGround);
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
@@ -60,17 +57,30 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.W)&& onGround||Input.GetKeyDown(KeyCode.W)&& onGround){
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && bulletOnCoolDown == false)
+        if (Input.GetKeyDown(KeyCode.D)||Input.GetKey(KeyCode.D))
+        {
+            rightFace = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.A)|| Input.GetKey(KeyCode.A))
+        {
+            rightFace = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && bulletOnCoolDown == false && rightFace)
         {
             Instantiate(Projectile, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
             bulletOnCoolDown = true;
-            bulletCoolDown = bulletMaxCoolDown;
-
-
+            bulletCoolDown = 10f;
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && bulletOnCoolDown == false && rightFace==false)
+        {
+            Instantiate(ProjectileLeft, new Vector3(transform.position.x, transform.position.y, 0f), Quaternion.identity);
+            bulletOnCoolDown = true;
+            bulletCoolDown = 10f;
         }
         if (Input.GetKey(KeyCode.S)&& onGround==false){
             rb.velocity = new Vector2(rb.velocity.x, -jumpSpeed);
         }
+
 	}
     void OnTriggerEnter2D(Collider2D other)
     {
