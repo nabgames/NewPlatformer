@@ -9,6 +9,7 @@ public class PlayerProjectileScript : MonoBehaviour {
     public float secondTimer;
     //public PlayerScript aScript;
     //public GameObject aGameObject;
+    //aScript = aGameObject.GetComponent<PlayerScript>();
     public float bulletRange = 30f;
 
     // Use this for initialization
