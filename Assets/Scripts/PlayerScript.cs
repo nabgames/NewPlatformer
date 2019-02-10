@@ -13,7 +13,6 @@ public class PlayerScript : MonoBehaviour {
     public float groundCheckRadius;
     public LayerMask whatIsGround;
     private bool onGround;
-    public int walk;
     public GameObject Projectile;
     public GameObject ProjectileLeft;
     public float bulletCoolDown = 0f;
@@ -30,7 +29,6 @@ public class PlayerScript : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         rightFace = true;
-        walk = 0;
   
     }
 	
@@ -44,17 +42,6 @@ public class PlayerScript : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        if (rightFace)
-        {
-            transform.eulerAngles = new Vector3(0f,0f,0f);
-
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0f, 180f, 0f);
-        }
-
-
         if (bulletCoolDown < 1f)
         {
             bulletOnCoolDown = false;
@@ -63,8 +50,7 @@ public class PlayerScript : MonoBehaviour {
         {
             bulletCoolDown--;
         }
-        float below_distance = 1.2f;  // radius of player plus a little
-        Vector3 down = new Vector3(transform.position.x, transform.position.y - below_distance, 0.0f);
+        float below_distance = 1.2f;  // radius of player plus a little         Vector3 down = new Vector3(transform.position.x, transform.position.y - below_distance, 0.0f);
         onGround = Physics2D.OverlapCircle(down, groundCheckRadius, whatIsGround);
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0.0f, 0.0f);
         transform.position = transform.position + move * .13f;
@@ -74,27 +60,10 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.D)||Input.GetKey(KeyCode.D))
         {
             rightFace = true;
-            if (walk == 0)
-            {
-                walk = 10;
-            }
-            else
-            {
-                walk--;
-            }
         }
         else if (Input.GetKeyDown(KeyCode.A)|| Input.GetKey(KeyCode.A))
         {
-            
-            rightFace = false; 
-            if (walk == 0)
-            {
-                walk = 10;
-            }
-            else
-            {
-                walk--;
-            }
+            rightFace = false;
         }
         if (Input.GetKeyDown(KeyCode.Space) && bulletOnCoolDown == false && rightFace)
         {
@@ -118,10 +87,6 @@ public class PlayerScript : MonoBehaviour {
         if (other.gameObject.CompareTag("EnemyTrigger"))
         {
             playerHealth = playerHealth - 1;
-        }
-        if (other.gameObject.CompareTag("DeathTrigger"))
-        {
-            playerHealth = 0;
         }
     }
 }

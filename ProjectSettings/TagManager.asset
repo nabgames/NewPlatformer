@@ -7,7 +7,6 @@ TagManager:
   - PlayerBulletTrigger
   - EnemyTrigger
   - PlayerStandardBulletTrigger
-  - DeathTrigger
   layers:
   - Default
   - TransparentFX

@@ -21,7 +21,6 @@ public class EnemyScript : MonoBehaviour {
 
     //Don't try to change these variables please! If you want to change specifications beyond the types above, maybe make chagnes to the serperate functions for movement below.
 
-    public bool moving;
     public float xMin;
     public float xMax;
     public float yMin;
@@ -33,7 +32,6 @@ public class EnemyScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        moving = false;
         Attack = 1f;
         moveRight = false;
         startX = transform.position.x;
@@ -310,7 +308,7 @@ public class EnemyScript : MonoBehaviour {
                 Attack = 0f;
             }
         }
-        if (Temper == "Neutral")
+        if (Temper == "neutral")
         {
             Attack = 0f;
         }
@@ -343,35 +341,59 @@ public class EnemyScript : MonoBehaviour {
                 Attack = 2f;
             }
         }
-       if (Attack != 0f)
-        // && Random.Range(0f, 3f) > 2f
+        if (transform.position.x < xMin + Speed)
         {
-            if (playerScript.playerX < xMax && playerScript.playerY < yMax && playerScript.playerX > xMin && playerScript.playerY > yMin && moving == false)
+            transform.position = new Vector3(transform.position.x + Speed, transform.position.y, 0.0f);
+        }
+        else if (transform.position.x > xMax - Speed)
+        {
+            transform.position = new Vector3(transform.position.x - Speed, transform.position.y, 0.0f);
+        }
+        else if (transform.position.y < yMin + Speed)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + Speed, 0.0f);
+        }
+        else if (transform.position.y > yMax - Speed)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - Speed, 0.0f);
+        }
+        else if (Attack != 0f && Random.Range(0f, 3f) > 2f)
+            
+        {
+            if (transform.position.x > playerScript.playerX)
             {
-                GoTo(transform.position.x, transform.position.y, playerScript.playerX, playerScript.playerY, Speed * Attack);
+                transform.position = new Vector3(transform.position.x - Speed * (Attack * 1.5f), transform.position.y, 0.0f);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x + Speed * (Attack * 1.5f), transform.position.y, 0.0f);
+            }
+            if (transform.position.y > playerScript.playerY)
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y - Speed * (Attack * 1.5f), 0.0f);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, transform.position.y + Speed * (Attack * 1.5f), 0.0f);
             }
         }
-        else if (moving == false)
+        else if (Random.Range(0 + moveBiasX, 4f) > 2f)
         {
-            GoTo(transform.position.x, transform.position.y, Random.Range(xMin, xMax), Random.Range(xMin, xMax), Speed);
-            print("whale");
-        }
-
-    }
-    void GoTo(float xS, float yS, float x, float y, float speed)
-    {
-        if (transform.position.x < x - .1f && transform.position.x > x + .1f && transform.position.y < y + .1f && transform.position.y > y - .1f)
-        {
-            moving = false;
+            transform.position = new Vector3(transform.position.x - Speed, transform.position.y, 0.0f);
         }
         else
         {
-            moving = true;
-            transform.position = transform.position + new Vector3((x - xS) / (50f - speed), (y - yS) / (50f - speed), 0.0f);
-            
+            transform.position = new Vector3(transform.position.x + Speed, transform.position.y, 0.0f);
+        }
+        if (Random.Range(0 + moveBiasY, 4f) > 2f)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - Speed, 0.0f);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + Speed, 0.0f);
         }
 
-            
     }
 }
 
