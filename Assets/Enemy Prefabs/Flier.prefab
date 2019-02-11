@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 23723502724061742}
   - component: {fileID: 114096997560428026}
   - component: {fileID: 61643893778852436}
-  - component: {fileID: 50691479926254120}
   m_Layer: 0
   m_Name: Flier
   m_TagString: EnemyTrigger
@@ -38,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020917826670514}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.328477, y: 5.1371355, z: 0}
+  m_LocalPosition: {x: -7.290844, y: 5.858967, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,26 +85,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1020917826670514}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50691479926254120
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1020917826670514}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &61643893778852436
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -142,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82d0602e2214ce40a16bd425b9c5abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1010893621939220, guid: 1fc7a8e43eb213549b21d394e7d704a0, type: 2}
+  Player: {fileID: 1971956470514450, guid: 67a6c69608ba440c5b61a2bc14da4bcf, type: 2}
   playerScript: {fileID: 0}
   enemyHealth: 2
   enemyDropRate: 0
