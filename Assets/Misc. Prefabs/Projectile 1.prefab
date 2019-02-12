@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23315934569515128}
   - component: {fileID: 58824445201555492}
   - component: {fileID: 50958255890966034}
-  - component: {fileID: 114102326234775190}
+  - component: {fileID: 114185586542432598}
   m_Layer: 0
   m_Name: Projectile 1
   m_TagString: PlayerStandardBulletTrigger
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114102326234775190
+--- !u!114 &114185586542432598
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -135,4 +135,4 @@ MonoBehaviour:
   projectileSpeed: 0.25
   hiddenTimer: 0
   secondTimer: 0
-  bulletRange: 20
+  bulletRange: 30
