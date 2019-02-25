@@ -143,7 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1010893621939220, guid: 1fc7a8e43eb213549b21d394e7d704a0, type: 2}
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 114160986256942552, guid: 1fc7a8e43eb213549b21d394e7d704a0,
+    type: 2}
   enemyHealth: 2
   enemyDropRate: 0
   enemyMovementType: Fly
@@ -152,6 +153,7 @@ MonoBehaviour:
   Speed: 0.2
   startX: 0
   startY: 0
+  moving: 0
   xMin: 0
   xMax: 0
   yMin: 0
